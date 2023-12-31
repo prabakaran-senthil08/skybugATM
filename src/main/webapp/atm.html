@@ -8,7 +8,7 @@
      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
       <style>
         body {
-            background-image: url('login_bc.jpeg');
+            background-color: #B0E0E6;
             background-size: cover;
             background-attachment: fixed;
             background-repeat: no-repeat;
@@ -38,17 +38,19 @@
                 <div class="login-form">
                     <form action="ATM" method="post" id="form">
                     <h3 class="text-center text-success">Welcome to ATM</h3>
-				        <div class="form-group">
+				        <div class="form-group hide">
                             <label for="amount">Amount:</label>
-                            <input type="number" class="form-control" id="amount" name="amount" required>
+                            <input type="number" class="form-control amount" id="amount" name="amount" required>
                         </div>
                         <div class="form-group">
                         <label for="action">Select Action:</label>
-                          <select id="action" name="action" class="form-control">
+                          <select id="action" name="action" class="form-control opt">
+                          
+				            <option value="">-- Please Select --</option>
 				            <option value="withdraw">Withdraw</option>
 				            <option value="deposit">Deposit</option>
 				            <option value="checkBalance">Check Balance</option>
-				        </select>
+				        </select> 
 				         </div>
                             <div class="row justify-content-center">
                               <input type="submit" name="submit" value="sumbit" style="width : 40%;" class="btn btn-primary btn-block">
@@ -58,5 +60,18 @@
             </div>
         </div>
     </div>
+    <script>
+       $(document).ready(()=>{
+    	   $('.opt').on('click',()=>{
+    		   if($('.opt').val() == "checkBalance"){ 
+    			   $('.amount').removeAttr("required");
+    			   $('.hide').hide();
+    		   }else{
+    			   $('.hide').show();
+    			   $('.amount').attr("required");
+    		   }
+    	   });
+       });
+    </script>
 </body>
 </html>

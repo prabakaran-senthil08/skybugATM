@@ -6,12 +6,9 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.io.PrintWriter;
 
 import com.skybug.dto.BankAccount;
-
-/**
- * Servlet implementation class ATM
- */
 
 @WebServlet("/ATM")
 public class ATM extends HttpServlet {
@@ -20,13 +17,12 @@ public class ATM extends HttpServlet {
 
     public ATM() {
         super();
-        userAccount = new BankAccount(); // Assuming BankAccount class is implemented
+        userAccount = new BankAccount(); 
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String action = request.getParameter("action");
-
         if ("withdraw".equals(action)) {
             withdraw(request, response);
         } else if ("deposit".equals(action)) {
@@ -38,31 +34,27 @@ public class ATM extends HttpServlet {
 
     private void withdraw(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve amount from the request
+    	response.setContentType("text/html");
         double amount = Double.parseDouble(request.getParameter("amount"));
-
-        // Validate and process withdrawal
         if (userAccount.validateWithdrawal(amount)) {
             userAccount.withdraw(amount);
-            response.getWriter().write("Withdrawal successful. Remaining balance: " + userAccount.getBalance());
+           response.getWriter().write("Withdrawal successful. Remaining balance: " + userAccount.getBalance() +"\n <a href='atm.html'>Home</a>");
         } else {
-            response.getWriter().write("Insufficient funds for withdrawal.");
+            response.getWriter().write("Insufficient funds for withdrawal.\n <a href='atm.html'>Home</a>");
         }
     }
 
     private void deposit(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Retrieve amount from the request
+    	response.setContentType("text/html");
         double amount = Double.parseDouble(request.getParameter("amount"));
-
-        // Process deposit
         userAccount.deposit(amount);
-        response.getWriter().write("Deposit successful. New balance: " + userAccount.getBalance());
+        response.getWriter().write("Deposit successful. New balance: " + userAccount.getBalance()+"\n <a href='atm.html'>Home</a>");
     }
 
     private void checkBalance(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // Display current balance
-        response.getWriter().write("Current balance: " + userAccount.getBalance());
+    	response.setContentType("text/html");
+        response.getWriter().write("Current balance: " + userAccount.getBalance() + "\n <a href='atm.html'>Home</a>");
     }
 }
