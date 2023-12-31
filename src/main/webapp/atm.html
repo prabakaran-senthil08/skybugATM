@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>ATM</title>
+     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.4/jquery.min.js"></script>
+     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+      <style>
+        body {
+            background-image: url('login_bc.jpeg');
+            background-size: cover;
+            background-attachment: fixed;
+            background-repeat: no-repeat;
+            background-position: center;
+            font-family: Arial, sans-serif;
+            display: flex;
+            align-items: center;
+            height: 75vh;
+        }
+        .container {
+            margin-top: 50px;
+        }
+        .login-form {
+            background-color: #fff;
+            background-attachment: fixed;
+            padding: 35px;
+            border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            border: 1px solid black;
+        }
+    </style>
+</head>
+<body>
+     <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="login-form">
+                    <form action="ATM" method="post" id="form">
+                    <h3 class="text-center text-success">Welcome to ATM</h3>
+				        <div class="form-group">
+                            <label for="amount">Amount:</label>
+                            <input type="number" class="form-control" id="amount" name="amount" required>
+                        </div>
+                        <div class="form-group">
+                        <label for="action">Select Action:</label>
+                          <select id="action" name="action" class="form-control">
+				            <option value="withdraw">Withdraw</option>
+				            <option value="deposit">Deposit</option>
+				            <option value="checkBalance">Check Balance</option>
+				        </select>
+				         </div>
+                            <div class="row justify-content-center">
+                              <input type="submit" name="submit" value="sumbit" style="width : 40%;" class="btn btn-primary btn-block">
+                            </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
